@@ -1,12 +1,11 @@
-function performTitration() {
-    const acid = document.getElementById('acid').value;import streamlit as st
+import streamlit as st
 import numpy as np
 from molmass import Formula
 
 st.set_page_config(page_title="Laboratorium Kimia Virtual", layout="wide")
-
 st.title("🧪 Laboratorium Kimia Virtual")
 
+# Sidebar untuk memilih eksperimen
 sidebar = st.sidebar.selectbox(
     "Pilih Eksperimen", 
     ("Simulasi Reaksi Kimia", "Titrasi Asam-Basa", "Kalkulator Kimia")
@@ -44,9 +43,12 @@ elif sidebar == "Titrasi Asam-Basa":
     kons_basa = st.number_input("Konsentrasi Basa (NaOH) (M)", value=0.1, step=0.01)
 
     if st.button("Hitung Volume Basa yang Dibutuhkan"):
-        mol_asam = kons_asam * (vol_asam / 1000)
-        vol_basa_ml = (mol_asam / kons_basa) * 1000
-        st.success(f"📈 Volume basa yang diperlukan untuk netralisasi: **{vol_basa_ml:.2f} mL**")
+        if kons_basa > 0:
+            mol_asam = kons_asam * (vol_asam / 1000)
+            vol_basa_ml = (mol_asam / kons_basa) * 1000
+            st.success(f"📈 Volume basa yang diperlukan untuk netralisasi: **{vol_basa_ml:.2f} mL**")
+        else:
+            st.error("Konsentrasi basa tidak boleh nol")
 
 # === 3. Kalkulator Kimia ===
 elif sidebar == "Kalkulator Kimia":
@@ -83,32 +85,3 @@ elif sidebar == "Kalkulator Kimia":
                 st.success(f"Jumlah mol gas: **{n:.3f} mol**")
             except:
                 st.error("Masukkan nilai valid untuk P, V, dan T")
-
-    
-    const acidConc = parseFloat(document.getElementById('acidConc').value);
-    const acidVol = parseFloat(document.getElementById('acidVol').value);
-    const baseConc = parseFloat(document.getElementById('baseConc').value);
-    const result = document.getElementById('titrationResult');
-
-    if (acidConc && acidVol && baseConc) {
-        // Menghitung mol asam: M x V (dalam liter)
-        const acidMoles = acidConc * (acidVol / 1000); // mL ke L
-
-        // Menghitung volume basa (dalam mL) yang dibutuhkan untuk netralisasi
-        const baseVolNeeded = (acidMoles / baseConc) * 1000; // L ke mL
-
-        result.innerHTML = `
-            <h3>📊 Hasil Titrasi</h3>
-            <p><strong>Asam:</strong> ${acid}</p>
-            <p><strong>Konsentrasi Asam:</strong> ${acidConc} M</p>
-            <p><strong>Volume Asam:</strong> ${acidVol} mL</p>
-            <p><strong>Konsentrasi Basa (NaOH):</strong> ${baseConc} M</p>
-            <p><strong>Volume Basa yang Diperlukan untuk Netralisasi:</strong> ${baseVolNeeded.toFixed(2)} mL</p>
-        `;
-    } else {
-        result.innerHTML = `
-            <h3>⚠️ Input Tidak Lengkap</h3>
-            <p>Harap isi semua nilai konsentrasi dan volume dengan benar.</p>
-        `;
-    }
-}
