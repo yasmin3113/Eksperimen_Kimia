@@ -704,4 +704,13 @@
                 const baseVolNeeded = (acidMoles / baseConc) * 1000; // Convert L to mL
                 
                 result.innerHTML = `
-                    <h3>📊
+                    <h3>📊 Hasil Titrasi</h3>
+                    <div class="formula-display">${acid} + NaOH → Garam + H₂O</div>
+                    <p><strong>Asam:</strong> ${acid}</p>
+                    <p><strong>Konsentrasi Asam:</strong> ${acidConc} M</p>
+                    <p><strong>Volume Asam:</strong> ${acidVol} mL</p>
+                    <p><strong>Mol Asam:</strong> ${acidMoles.toFixed(4)} mol</p>
+                    <p><strong>Volume NaOH yang dibutuhkan:</strong> ${baseVolNeeded.toFixed(2)} mL</p>
+                    <p><strong>Titik Ekivalen:</strong> pH ≈ ${acid === 'HCl' ? '7.0' : '8.5'}</p>
+                    <p><strong>Indikator yang cocok:</strong> ${acid === 'HCl' ? 'Fenolftalein atau Bromtimol Biru' : 'Fenolftalein'}</p>
+                `;
