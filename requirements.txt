@@ -1,20 +1,4 @@
-# Core App Framework
 streamlit>=1.35.0
-
-# Perhitungan dan data
+molmass>=2023.8.2
 numpy>=1.26.4
 pandas>=2.2.2
-
-# Visualisasi
-matplotlib>=3.8.4
-plotly>=5.22.0
-
-# Animasi (untuk efek visual seperti molekul bergerak)
-streamlit-lottie>=0.0.5
-
-# Tambahan jika perlu form dan input lanjutan
-streamlit-elements>=0.1.0
-
-# Untuk mengakses ekspresi kimia dan parser (jika ingin parsing formula lebih kompleks)
-molmass>=2023.8.2
-chempy>=0.8.0
